@@ -490,5 +490,5 @@ obj/
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
-
+*/Assets/*
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,dotnetcore,csharp
