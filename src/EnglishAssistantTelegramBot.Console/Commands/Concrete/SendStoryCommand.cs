@@ -28,8 +28,6 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         public async Task ExecuteAsync(Message message)
         {
-            System.Console.WriteLine($"It received new message: {JsonConvert.SerializeObject(message.Chat)} in this room: {message.Chat.Id}");
-
             await SendStartingMessage(message);
 
             var story = await _storyRepository.GetAnyStoryAsync();
@@ -112,7 +110,7 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
                 await using var audioStream = System.IO.File.OpenRead($"Assets/sounds/{story.SoundFile}");
 
-                await _telegramBotClient.SendAudioAsync(message.Chat.Id, new InputMedia(audioStream, story.SoundFile));
+                await _telegramBotClient.SendAudioAsync(message.Chat.Id, new InputMedia(audioStream, story.Title));
             }
         }
 
@@ -128,7 +126,7 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
             {
                 await using var imageStream = System.IO.File.OpenRead(imagePath);
 
-                await _telegramBotClient.SendPhotoAsync(message.Chat.Id, new InputMedia(imageStream, story.PreviewImage));
+                await _telegramBotClient.SendPhotoAsync(message.Chat.Id, new InputMedia(imageStream, story.Title));
             }
         }
     }

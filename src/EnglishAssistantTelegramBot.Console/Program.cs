@@ -42,6 +42,8 @@ namespace EnglishAssistantTelegramBot.Console
                 return;
             }
 
+            System.Console.WriteLine($"It received new message: {JsonConvert.SerializeObject(e.Message)}");
+
             await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
         }
     }
