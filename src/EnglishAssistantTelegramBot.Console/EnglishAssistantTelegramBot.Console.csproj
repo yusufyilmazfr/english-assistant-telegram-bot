@@ -14,7 +14,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <None Update="Assets\preview-images\3f44a9c2700aa23c20de0a86579de0ec.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\preview-images\516aa5dac6382dffad094451d3c110b7.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\preview-images\7aacc4e4-507a-41d3-b8c9-39b62c515d41.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\sounds\3f44a9c2700aa23c20de0a86579de0ec.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\sounds\516aa5dac6382dffad094451d3c110b7.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\sounds\7aacc4e4-507a-41d3-b8c9-39b62c515d41.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

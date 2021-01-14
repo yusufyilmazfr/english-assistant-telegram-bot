@@ -21,8 +21,9 @@ namespace EnglishAssistantTelegramBot.Console
             ITelegramClient telegramClient = new TelegramClient();
             ITelegramBotClient telegramBotClient = telegramClient.GetInstance();
             IWordRepository wordRepository = new DapperWordRepository();
+            IStoryRepository storyRepository = new DapperStoryRepository();
 
-            TelegramCommandFactory = new TelegramCommandFactory(telegramClient, wordRepository);
+            TelegramCommandFactory = new TelegramCommandFactory(telegramClient, wordRepository, storyRepository);
 
             telegramBotClient.OnMessage += TelegramBotClientOnOnMessage;
             telegramBotClient.StartReceiving();
