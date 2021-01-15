@@ -14,7 +14,6 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper
 {
     public class DapperWordRepository : DapperBaseRepository<Word>, IWordRepository
     {
-        // I will move base from here to app settings or in another file.
         private readonly string _connectionString;
 
         public DapperWordRepository(IConfigurationContext configurationContext) : base(configurationContext)

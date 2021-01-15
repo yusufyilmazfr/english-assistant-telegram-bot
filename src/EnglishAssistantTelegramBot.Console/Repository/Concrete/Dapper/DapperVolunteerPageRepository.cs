@@ -13,7 +13,6 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper
 {
     public class DapperVolunteerPageRepository : DapperBaseRepository<VolunteerPage>, IVolunteerPageRepository
     {
-        // I will move base from here to app settings or in another file.
         private readonly string _connectionString;
 
         public DapperVolunteerPageRepository(IConfigurationContext configurationContext) : base(configurationContext)

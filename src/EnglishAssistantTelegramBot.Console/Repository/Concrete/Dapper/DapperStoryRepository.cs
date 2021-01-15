@@ -13,7 +13,6 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper
 {
     public class DapperStoryRepository : DapperBaseRepository<Story>, IStoryRepository
     {
-        // I will move base from here to app settings or in another file.
         private readonly string _connectionString;
 
         public DapperStoryRepository(IConfigurationContext configurationContext) : base(configurationContext)
