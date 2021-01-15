@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using Telegram.Bot;
@@ -9,24 +10,25 @@ using Telegram.Bot.Types;
 
 namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 {
-    public class SendNewWordCommand : ICommand
+    public class SendNewQuoteCommand : ICommand
     {
-        private readonly IWordRepository _wordRepository;
         private readonly ITelegramBotClient _telegramBotClient;
+        private readonly IQuoteRepository _quoteRepository;
 
-        public SendNewWordCommand(ITelegramBotClient telegramBotClient, IWordRepository wordRepository)
+        public SendNewQuoteCommand(ITelegramBotClient telegramBotClient, IQuoteRepository quoteRepository)
         {
-            _wordRepository = wordRepository;
+            _quoteRepository = quoteRepository;
             _telegramBotClient = telegramBotClient;
         }
 
+
         public async Task ExecuteAsync(Message message)
         {
-            var word = await _wordRepository.GetAnyWordAsync();
+            var quote = await _quoteRepository.GetAnyQuoteAsync();
 
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Owv! {message.Chat.FirstName} came back! :) I will take a new word to you. 🎉");
 
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"🇬🇧: {word.En}.\n🇹🇷: {word.Tr}");
+            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"🇬🇧: {quote.En}.\n🇹🇷: {quote.Tr}");
 
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Don't be a stranger! 💖");
         }

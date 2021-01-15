@@ -83,8 +83,8 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
                     await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, section);
 
-                    startIndex = endIndex;
-                    endIndex *= 2;
+                    startIndex += _telegramMessageMaxLength;
+                    endIndex += _telegramMessageMaxLength;
                 }
             }
         }

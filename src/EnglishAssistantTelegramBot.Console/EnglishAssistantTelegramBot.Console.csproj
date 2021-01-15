@@ -44,6 +44,9 @@
     <None Update="Assets\preview-images\d52cf394-8ba3-46c8-9777-dee34194da5f.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Assets\preview-images\in_the_dark.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\sounds\3f44a9c2700aa23c20de0a86579de0ec.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -72,6 +75,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Assets\sounds\d52cf394-8ba3-46c8-9777-dee34194da5f.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\sounds\in_the_dark.m3u">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
