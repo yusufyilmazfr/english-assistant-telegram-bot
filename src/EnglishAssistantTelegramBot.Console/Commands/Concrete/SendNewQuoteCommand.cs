@@ -15,10 +15,10 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly IQuoteRepository _quoteRepository;
 
-        public SendNewQuoteCommand(ITelegramBotClient telegramBotClient, IQuoteRepository quoteRepository)
+        public SendNewQuoteCommand(ITelegramClient telegramClient, IQuoteRepository quoteRepository)
         {
             _quoteRepository = quoteRepository;
-            _telegramBotClient = telegramBotClient;
+            _telegramBotClient = telegramClient.GetInstance();
         }
 
 

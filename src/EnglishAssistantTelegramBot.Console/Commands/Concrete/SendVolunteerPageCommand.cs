@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using Telegram.Bot;
@@ -16,9 +17,9 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly IVolunteerPageRepository _volunteerPageRepository;
 
-        public SendVolunteerPageCommand(ITelegramBotClient telegramBotClient, IVolunteerPageRepository volunteerPageRepository)
+        public SendVolunteerPageCommand(ITelegramClient telegramClient, IVolunteerPageRepository volunteerPageRepository)
         {
-            _telegramBotClient = telegramBotClient;
+            _telegramBotClient = telegramClient.GetInstance();
             _volunteerPageRepository = volunteerPageRepository;
         }
 
