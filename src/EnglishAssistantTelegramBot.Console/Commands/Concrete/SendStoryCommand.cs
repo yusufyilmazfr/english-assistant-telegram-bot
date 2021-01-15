@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using EnglishAssistantTelegramBot.Console.Entities;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
@@ -20,9 +21,9 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         private const int _telegramMessageMaxLength = 4090;
 
-        public SendStoryCommand(ITelegramBotClient telegramBotClient, IStoryRepository storyRepository)
+        public SendStoryCommand(ITelegramClient telegramClient, IStoryRepository storyRepository)
         {
-            _telegramBotClient = telegramBotClient;
+            _telegramBotClient = telegramClient.GetInstance();
             _storyRepository = storyRepository;
         }
 

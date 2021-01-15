@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -12,9 +13,9 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
     {
         private readonly ITelegramBotClient _telegramBotClient;
 
-        public ShowCommand(ITelegramBotClient telegramBotClient)
+        public ShowCommand(ITelegramClient telegramClient)
         {
-            _telegramBotClient = telegramBotClient;
+            _telegramBotClient = telegramClient.GetInstance();
         }
 
         public async Task ExecuteAsync(Message message)
