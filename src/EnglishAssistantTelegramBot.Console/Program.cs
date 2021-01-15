@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.CommandFactory;
 using EnglishAssistantTelegramBot.Console.Commands.Concrete;
 using EnglishAssistantTelegramBot.Console.Configuration.Context;
 using EnglishAssistantTelegramBot.Console.Configuration.Environment;
+using EnglishAssistantTelegramBot.Console.Entities;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,12 +25,15 @@ namespace EnglishAssistantTelegramBot.Console
         public static ITelegramBotClient TelegramBotClient { get; set; }
         public static ITelegramCommandFactory TelegramCommandFactory { get; set; }
 
+        public static IRequestHistoryRepository RequestHistoryRepository { get; set; }
+
         static void Main(string[] args)
         {
             RegisterDependencies();
 
-            TelegramCommandFactory = Services.GetRequiredService<ITelegramCommandFactory>();
             TelegramClient = Services.GetRequiredService<ITelegramClient>();
+            TelegramCommandFactory = Services.GetRequiredService<ITelegramCommandFactory>();
+            RequestHistoryRepository = Services.GetRequiredService<IRequestHistoryRepository>();
 
             TelegramBotClient = TelegramClient.GetInstance();
 
@@ -34,11 +41,12 @@ namespace EnglishAssistantTelegramBot.Console
 
             TelegramBotClient.StartReceiving();
 
-            System.Console.WriteLine("Please press key to exit");
+            System.Console.WriteLine($"EnglishAssistantTelegramBot.Console.Program started!");
 
-            System.Console.Read();
-
-            TelegramBotClient.StopReceiving();
+            while (true)
+            {
+                Thread.Sleep(4000);
+            }
         }
 
         private static async void TelegramBotClientOnOnMessage(object sender, MessageEventArgs e)
@@ -48,9 +56,16 @@ namespace EnglishAssistantTelegramBot.Console
                 return;
             }
 
-            System.Console.WriteLine($"It received new message: {JsonConvert.SerializeObject(e.Message)}");
+            RequestHistoryRepository.InsertAsync(new RequestHistory(e.Message));
 
-            await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
+            try
+            {
+                await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
+            }
+            catch
+            {
+                await TelegramBotClient.SendTextMessageAsync(e.Message.Chat.Id, "Ops! something went wrong. 😢🤦‍♀️ Can you try again?");
+            }
         }
 
         private static void RegisterDependencies()
@@ -69,6 +84,7 @@ namespace EnglishAssistantTelegramBot.Console
                 .AddSingleton<IStoryRepository, DapperStoryRepository>()
                 .AddSingleton<IVolunteerPageRepository, DapperVolunteerPageRepository>()
                 .AddSingleton<IWordRepository, DapperWordRepository>()
+                .AddSingleton<IRequestHistoryRepository, DapperRequestHistoryRepository>()
                 .BuildServiceProvider();
         }
     }
