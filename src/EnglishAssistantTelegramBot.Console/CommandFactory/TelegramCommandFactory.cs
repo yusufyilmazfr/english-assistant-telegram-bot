@@ -16,12 +16,14 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
         private readonly IWordRepository _wordRepository;
         private readonly IStoryRepository _storyRepository;
         private readonly IQuoteRepository _quoteRepository;
+        private readonly IVolunteerPageRepository _volunteerPageRepository;
 
-        public TelegramCommandFactory(ITelegramClient telegramClient, IWordRepository wordRepository, IStoryRepository storyRepository, IQuoteRepository quoteRepository)
+        public TelegramCommandFactory(ITelegramClient telegramClient, IWordRepository wordRepository, IStoryRepository storyRepository, IQuoteRepository quoteRepository, IVolunteerPageRepository volunteerPageRepository)
         {
             _wordRepository = wordRepository;
             _storyRepository = storyRepository;
             _quoteRepository = quoteRepository;
+            _volunteerPageRepository = volunteerPageRepository;
             TelegramBotClient = telegramClient.GetInstance();
         }
 
@@ -37,6 +39,8 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
                     return new SendNewWordCommand(TelegramBotClient, _wordRepository);
                 case "/sendnewquote":
                     return new SendNewQuoteCommand(TelegramBotClient, _quoteRepository);
+                case "/supportvolunteerpages":
+                    return new SendVolunteerPageCommand(TelegramBotClient, _volunteerPageRepository);
                 default:
                     return new ShowCommand(TelegramBotClient);
             }
