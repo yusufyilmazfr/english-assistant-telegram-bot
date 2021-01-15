@@ -1,41 +1,44 @@
 ﻿using System;
-using System.Threading.Tasks;
 using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.CommandFactory;
+using EnglishAssistantTelegramBot.Console.Commands.Concrete;
+using EnglishAssistantTelegramBot.Console.Configuration.Context;
+using EnglishAssistantTelegramBot.Console.Configuration.Environment;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Telegram.Bot;
 using Telegram.Bot.Args;
-using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InputFiles;
 
 namespace EnglishAssistantTelegramBot.Console
 {
     class Program
     {
-        public static ITelegramCommandFactory TelegramCommandFactory;
+        public static IServiceProvider Services { get; set; }
+
+        public static ITelegramClient TelegramClient { get; set; }
+        public static ITelegramBotClient TelegramBotClient { get; set; }
+        public static ITelegramCommandFactory TelegramCommandFactory { get; set; }
 
         static void Main(string[] args)
         {
-            ITelegramClient telegramClient = new TelegramClient();
-            ITelegramBotClient telegramBotClient = telegramClient.GetInstance();
-            IWordRepository wordRepository = new DapperWordRepository();
-            IStoryRepository storyRepository = new DapperStoryRepository();
-            IQuoteRepository quoteRepository = new DapperQuoteRepository();
-            IVolunteerPageRepository volunteerPageRepository = new DapperVolunteerPageRepository();
+            RegisterDependencies();
 
+            TelegramCommandFactory = Services.GetRequiredService<ITelegramCommandFactory>();
+            TelegramClient = Services.GetRequiredService<ITelegramClient>();
 
-            TelegramCommandFactory = new TelegramCommandFactory(telegramClient, wordRepository, storyRepository, quoteRepository, volunteerPageRepository);
+            TelegramBotClient = TelegramClient.GetInstance();
 
-            telegramBotClient.OnMessage += TelegramBotClientOnOnMessage;
-            telegramBotClient.StartReceiving();
+            TelegramBotClient.OnMessage += TelegramBotClientOnOnMessage;
+
+            TelegramBotClient.StartReceiving();
 
             System.Console.WriteLine("Please press key to exit");
 
             System.Console.Read();
 
-            telegramBotClient.StopReceiving();
+            TelegramBotClient.StopReceiving();
         }
 
         private static async void TelegramBotClientOnOnMessage(object sender, MessageEventArgs e)
@@ -48,6 +51,25 @@ namespace EnglishAssistantTelegramBot.Console
             System.Console.WriteLine($"It received new message: {JsonConvert.SerializeObject(e.Message)}");
 
             await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
+        }
+
+        private static void RegisterDependencies()
+        {
+            Services = new ServiceCollection()
+                .AddSingleton<IEnvironmentService, EnvironmentService>()
+                .AddSingleton<IConfigurationContext, ConfigurationContext>()
+                .AddSingleton<ITelegramClient, TelegramClient>()
+                .AddSingleton<ITelegramCommandFactory, TelegramCommandFactory>()
+                .AddSingleton<ShowCommand>()
+                .AddSingleton<SendStoryCommand>()
+                .AddSingleton<SendNewQuoteCommand>()
+                .AddSingleton<SendNewWordCommand>()
+                .AddSingleton<SendVolunteerPageCommand>()
+                .AddSingleton<IQuoteRepository, DapperQuoteRepository>()
+                .AddSingleton<IStoryRepository, DapperStoryRepository>()
+                .AddSingleton<IVolunteerPageRepository, DapperVolunteerPageRepository>()
+                .AddSingleton<IWordRepository, DapperWordRepository>()
+                .BuildServiceProvider();
         }
     }
 }
