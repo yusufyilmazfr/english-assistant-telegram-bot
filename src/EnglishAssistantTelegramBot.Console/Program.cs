@@ -62,8 +62,9 @@ namespace EnglishAssistantTelegramBot.Console
             {
                 await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
             }
-            catch
+            catch(Exception exception)
             {
+                System.Console.WriteLine(exception);
                 await TelegramBotClient.SendTextMessageAsync(e.Message.Chat.Id, "Ops! something went wrong. 😢🤦‍♀️ Can you try again?");
             }
         }

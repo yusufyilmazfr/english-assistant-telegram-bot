@@ -80,11 +80,11 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
                         break;
                     }
 
-                    section = story.Content.Substring(startIndex, endIndex) + "...";
+                    section = story.Content.Substring(startIndex, _telegramMessageMaxLength) + "...";
 
                     await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, section);
 
-                    startIndex += _telegramMessageMaxLength;
+                    startIndex = endIndex;
                     endIndex += _telegramMessageMaxLength;
                 }
             }
