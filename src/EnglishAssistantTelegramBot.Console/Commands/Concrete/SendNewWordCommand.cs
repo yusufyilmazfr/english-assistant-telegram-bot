@@ -25,11 +25,7 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
         {
             var word = await _wordRepository.GetAnyWordAsync();
 
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Owv! {message.Chat.FirstName} came back! :) I will take a new word to you. 🎉");
-
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"🇬🇧: {word.En}.\n🇹🇷: {word.Tr}");
-
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Don't be a stranger! 💖");
         }
     }
 }

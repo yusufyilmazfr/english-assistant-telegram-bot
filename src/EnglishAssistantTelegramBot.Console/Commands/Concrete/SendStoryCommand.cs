@@ -92,8 +92,6 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         private async Task SendStartingMessage(Message message)
         {
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Owv! {message.Chat.FirstName} came back! :) 💖");
-
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"I am going to send new story for you! 💖🎉");
         }
 

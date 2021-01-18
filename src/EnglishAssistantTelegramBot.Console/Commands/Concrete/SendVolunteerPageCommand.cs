@@ -28,9 +28,9 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
         {
             var volunteer = await _volunteerPageRepository.GetAnyVolunteerPageAsync();
 
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Owv! {message.Chat.FirstName} came back! :) I will recommend a new account to you. 🎉");
+            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"I will recommend a new beautiful account to you. 🎉");
 
-            var messageContent = $"I recommended a beautiful account! 💝\n" +
+            var messageContent = $"I recommended a beautiful account! 💝\n\n" +
                                        $"Account: *{volunteer.Name}*\n" +
                                        $"🇬🇧: {volunteer.En}.\n" +
                                        $"🇹🇷: {volunteer.Tr}";
@@ -43,8 +43,6 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
                                                                     "Visit beautiful account!", volunteer.Link
                                                                     )
                                                             ));
-
-            await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"Don't be a stranger! 💖");
         }
     }
 }
