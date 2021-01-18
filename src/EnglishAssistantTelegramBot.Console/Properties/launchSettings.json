@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Development": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENGLISHASSISTANTBOT_ENVIRONMENT": "development"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENGLISHASSISTANTBOT_ENVIRONMENT": "production"
+      }
+    }
+  }
+}

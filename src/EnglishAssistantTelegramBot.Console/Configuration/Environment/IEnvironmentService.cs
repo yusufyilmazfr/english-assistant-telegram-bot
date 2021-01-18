@@ -15,5 +15,11 @@ namespace EnglishAssistantTelegramBot.Console.Configuration.Environment
         /// </summary>
         /// <returns></returns>
         IConfiguration Configuration { get; }
+        /// <summary>
+        /// Check mode is development.
+        /// </summary>
+        bool IsDevelopment { get; }
+        /// Check mode is production.
+        bool IsProduction { get; }
     }
 }
