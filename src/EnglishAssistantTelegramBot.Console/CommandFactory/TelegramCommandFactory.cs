@@ -29,6 +29,7 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
                 "/sendnewword" => _serviceProvider.GetRequiredService<SendNewWordCommand>(),
                 "/sendnewquote" => _serviceProvider.GetRequiredService<SendNewQuoteCommand>(),
                 "/supportvolunteerpages" => _serviceProvider.GetRequiredService<SendVolunteerPageCommand>(),
+                "/contact" => _serviceProvider.GetRequiredService<ContactCommand>(),
                 _ => _serviceProvider.GetRequiredService<ShowCommand>()
             };
         }

@@ -81,6 +81,7 @@ namespace EnglishAssistantTelegramBot.Console
                 .AddSingleton<SendNewQuoteCommand>()
                 .AddSingleton<SendNewWordCommand>()
                 .AddSingleton<SendVolunteerPageCommand>()
+                .AddSingleton<ContactCommand>()
                 .AddSingleton<IQuoteRepository, DapperQuoteRepository>()
                 .AddSingleton<IStoryRepository, DapperStoryRepository>()
                 .AddSingleton<IVolunteerPageRepository, DapperVolunteerPageRepository>()
