@@ -41,10 +41,10 @@ They define in `appsettings.json` file. It under `Configuration` folder.
 
 As you can see it seet! 💝🎉
 
-<img title="" src="./screenshots/first.jpeg" alt="first.jpeg" data-align="inline" width="287"><img title="" src="./screenshots/start.jpeg" alt="start.jpeg" width="286">
+<img title="" src="./screenshots/first.jpeg" alt="first.jpeg" data-align="inline" width="287"><img title="" src="./screenshots/start.jpeg" alt="start.jpeg" width="287">
 
-<img title="" src="./screenshots/word.jpeg" alt="word.jpeg" width="289"><img title="" src="./screenshots/quote.jpeg" alt="quote.jpeg" width="289">
+<img title="" src="./screenshots/word.jpeg" alt="word.jpeg" width="287"><img title="" src="./screenshots/quote.jpeg" alt="quote.jpeg" width="287">
 
 <img title="" src="./screenshots/story-1.jpeg" alt="story-1.jpeg" width="287"><img title="" src="./screenshots/story-2.jpeg" alt="story-2.jpeg" width="287">
 
-<img title="" src="./screenshots/story-3.jpeg" alt="story-3.jpeg" width="289"><img title="" src="./screenshots/last.jpg" alt="last.jpg" width="289">
+<img title="" src="./screenshots/story-3.jpeg" alt="story-3.jpeg" width="287"><img title="" src="./screenshots/last.jpg" alt="last.jpg" width="287">
