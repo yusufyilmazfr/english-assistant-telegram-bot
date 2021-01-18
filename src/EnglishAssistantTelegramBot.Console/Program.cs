@@ -62,7 +62,7 @@ namespace EnglishAssistantTelegramBot.Console
             {
                 await TelegramCommandFactory.CreateCommand(e?.Message).ExecuteAsync(e.Message);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 System.Console.WriteLine(exception);
                 await TelegramBotClient.SendTextMessageAsync(e.Message.Chat.Id, "Ops! something went wrong. 😢🤦‍♀️ Can you try again?");
@@ -82,11 +82,13 @@ namespace EnglishAssistantTelegramBot.Console
                 .AddSingleton<SendNewWordCommand>()
                 .AddSingleton<SendVolunteerPageCommand>()
                 .AddSingleton<ContactCommand>()
+                .AddSingleton<SendNewDailyPhraseCommand>()
                 .AddSingleton<IQuoteRepository, DapperQuoteRepository>()
                 .AddSingleton<IStoryRepository, DapperStoryRepository>()
                 .AddSingleton<IVolunteerPageRepository, DapperVolunteerPageRepository>()
                 .AddSingleton<IWordRepository, DapperWordRepository>()
                 .AddSingleton<IRequestHistoryRepository, DapperRequestHistoryRepository>()
+                .AddSingleton<IDailyPhraseRepository, DapperDailyPhraseRepository>()
                 .BuildServiceProvider();
         }
     }
