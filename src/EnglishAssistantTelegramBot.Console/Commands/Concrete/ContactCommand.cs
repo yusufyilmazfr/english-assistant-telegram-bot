@@ -24,7 +24,7 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
                                     $"I am Yusuf. I created this bot to make your work easier while you are studying English. I am here if you want to request a new feature, support or say hi. @yusufyilmazfr 🤗🌺\n\n" +
 
                                     $"🇹🇷: Merhaba {message.From.FirstName ?? message.From.Username} 👋\n" +
-                                    $"Ben Yusuf. Bu botu, sizler İngilizce çalışırken işlerinizi kolaylaştırması için oluşturdum. Yeni özellik isteği, destek olmak veya bi' merhaba demek isterseniz  buradayım ben. @yusufyilmazfr 🤗🌺";
+                                    $"Ben Yusuf. Bu botu, sizler İngilizce çalışırken işlerinizi kolaylaştırması için oluşturdum. Yeni özellik isteği, destek olmak veya bi' merhaba demek isterseniz buradayım ben. @yusufyilmazfr 🤗🌺";
 
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, messageContent);
         }
