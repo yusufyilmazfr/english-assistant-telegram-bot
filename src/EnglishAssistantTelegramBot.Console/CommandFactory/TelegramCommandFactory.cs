@@ -30,6 +30,7 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
                 "/sendnewword" => _serviceProvider.GetRequiredService<SendNewWordCommand>(),
                 "/sendnewdailyphrase" => _serviceProvider.GetRequiredService<SendNewDailyPhraseCommand>(),
                 "/sendnewquote" => _serviceProvider.GetRequiredService<SendNewQuoteCommand>(),
+                "/sendnewquestion" => _serviceProvider.GetRequiredService<SendNewQuestionCommand>(),
                 "/supportvolunteerpages" => _serviceProvider.GetRequiredService<SendVolunteerPageCommand>(),
                 "/contact" => _serviceProvider.GetRequiredService<ContactCommand>(),
                 var x when Regex.IsMatch(x, "/translate.*") => _serviceProvider.GetRequiredService<TranslateCommand>(),
