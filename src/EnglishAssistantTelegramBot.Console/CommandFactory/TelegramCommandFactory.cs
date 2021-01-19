@@ -32,7 +32,7 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
                 "/sendnewquote" => _serviceProvider.GetRequiredService<SendNewQuoteCommand>(),
                 "/supportvolunteerpages" => _serviceProvider.GetRequiredService<SendVolunteerPageCommand>(),
                 "/contact" => _serviceProvider.GetRequiredService<ContactCommand>(),
-                "/translate" => _serviceProvider.GetRequiredService<TranslateCommand>(),
+                var x when Regex.IsMatch(x, "/translate.*") => _serviceProvider.GetRequiredService<TranslateCommand>(),
                 _ => _serviceProvider.GetRequiredService<ShowCommand>()
             };
         }
