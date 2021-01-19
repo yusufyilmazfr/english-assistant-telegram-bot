@@ -10,6 +10,8 @@ using EnglishAssistantTelegramBot.Console.Configuration.Environment;
 using EnglishAssistantTelegramBot.Console.Entities;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper;
+using EnglishAssistantTelegramBot.Console.Services.Translation;
+using EnglishAssistantTelegramBot.Console.Services.Translation.Google;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Telegram.Bot;
@@ -83,12 +85,15 @@ namespace EnglishAssistantTelegramBot.Console
                 .AddSingleton<SendVolunteerPageCommand>()
                 .AddSingleton<ContactCommand>()
                 .AddSingleton<SendNewDailyPhraseCommand>()
+                .AddSingleton<TranslateCommand>()
                 .AddSingleton<IQuoteRepository, DapperQuoteRepository>()
                 .AddSingleton<IStoryRepository, DapperStoryRepository>()
                 .AddSingleton<IVolunteerPageRepository, DapperVolunteerPageRepository>()
                 .AddSingleton<IWordRepository, DapperWordRepository>()
                 .AddSingleton<IRequestHistoryRepository, DapperRequestHistoryRepository>()
                 .AddSingleton<IDailyPhraseRepository, DapperDailyPhraseRepository>()
+                .AddSingleton<ITranslateService, GoogleTranslateService>()
+                .AddHttpClient()
                 .BuildServiceProvider();
         }
     }

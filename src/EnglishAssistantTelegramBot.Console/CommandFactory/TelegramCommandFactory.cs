@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using EnglishAssistantTelegramBot.Console.Commands.Concrete;
@@ -31,6 +32,7 @@ namespace EnglishAssistantTelegramBot.Console.CommandFactory
                 "/sendnewquote" => _serviceProvider.GetRequiredService<SendNewQuoteCommand>(),
                 "/supportvolunteerpages" => _serviceProvider.GetRequiredService<SendVolunteerPageCommand>(),
                 "/contact" => _serviceProvider.GetRequiredService<ContactCommand>(),
+                "/translate" => _serviceProvider.GetRequiredService<TranslateCommand>(),
                 _ => _serviceProvider.GetRequiredService<ShowCommand>()
             };
         }
