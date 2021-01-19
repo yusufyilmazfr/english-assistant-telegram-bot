@@ -14,5 +14,10 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Abstract
         /// </summary>
         /// <returns></returns>
         Task<Word> GetAnyWordAsync();
+        /// <summary>
+        /// It returns any word.
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<Word>> GetAnyWordsAsync(int count);
     }
 }

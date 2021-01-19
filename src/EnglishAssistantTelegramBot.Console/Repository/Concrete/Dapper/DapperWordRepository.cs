@@ -29,5 +29,14 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper
 
             return await connection.QueryFirstOrDefaultAsync<Word>(new CommandDefinition(sql));
         }
+
+        public async Task<IEnumerable<Word>> GetAnyWordsAsync(int count)
+        {
+            const string sql = "SELECT * FROM word ORDER BY RAND() LIMIT @count;";
+
+            await using var connection = new MySqlConnection(_connectionString);
+
+            return await connection.QueryAsync<Word>(new CommandDefinition(sql, new { count }));
+        }
     }
 }

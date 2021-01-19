@@ -10,6 +10,7 @@ using EnglishAssistantTelegramBot.Console.Configuration.Environment;
 using EnglishAssistantTelegramBot.Console.Entities;
 using EnglishAssistantTelegramBot.Console.Repository.Abstract;
 using EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper;
+using EnglishAssistantTelegramBot.Console.Services.Reminder;
 using EnglishAssistantTelegramBot.Console.Services.Translation;
 using EnglishAssistantTelegramBot.Console.Services.Translation.Google;
 using Microsoft.Extensions.DependencyInjection;
@@ -93,6 +94,7 @@ namespace EnglishAssistantTelegramBot.Console
                 .AddSingleton<IRequestHistoryRepository, DapperRequestHistoryRepository>()
                 .AddSingleton<IDailyPhraseRepository, DapperDailyPhraseRepository>()
                 .AddSingleton<ITranslateService, GoogleTranslateService>()
+                .AddSingleton<IQuestionReminder, QuestionReminder>()
                 .AddHttpClient()
                 .BuildServiceProvider();
         }
