@@ -25,5 +25,10 @@ namespace EnglishAssistantTelegramBot.Console.Entities
             CreatedDate = DateTime.Now;
             ModifiedDate = CreatedDate;
         }
+
+        public RequestHistory()
+        {
+            
+        }
     }
 }
