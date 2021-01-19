@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace EnglishAssistantTelegramBot.Console.Services.Translation.Google
 {
@@ -15,7 +16,7 @@ namespace EnglishAssistantTelegramBot.Console.Services.Translation.Google
             _httpClient = httpClientFactory.CreateClient();
         }
 
-        public async Task Translate(Translation translation)
+        public async Task<TranslationResult> Translate(Translation translation)
         {
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={translation.SourceLanguage}&tl={translation.DestionationLanguage}&dt=t&dt=bd&q={translation.Text}&dj=1";
 
@@ -23,7 +24,7 @@ namespace EnglishAssistantTelegramBot.Console.Services.Translation.Google
 
             var content = await httpResponseMessage.Content.ReadAsStringAsync();
 
-            System.Console.WriteLine(content);
+            return JsonConvert.DeserializeObject<TranslationResult>(content);
         }
     }
 }
