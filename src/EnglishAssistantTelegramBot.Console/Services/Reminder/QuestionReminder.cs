@@ -26,8 +26,8 @@ namespace EnglishAssistantTelegramBot.Console.Services.Reminder
         public async Task SendNewQuestion()
         {
             var randomNumber = new Random().Next(0, 5);
-            var chatIdList = _requestHistoryRepository.GetChatIdListAsync().Result;
-            var words = _wordRepository.GetAnyWordsAsync(count: 5).Result;
+            var chatIdList = await _requestHistoryRepository.GetChatIdListAsync();
+            var words = await _wordRepository.GetAnyWordsAsync(count: 5);
 
             var questionWord = words.ToList()[randomNumber];
 
