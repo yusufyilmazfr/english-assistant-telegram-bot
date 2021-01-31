@@ -28,5 +28,14 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Concrete.Dapper
 
             return await connection.QueryFirstOrDefaultAsync<Story>(new CommandDefinition(sql));
         }
+
+        public async Task<Story> GetAnyStoryAsync(int level)
+        {
+            const string sql = "SELECT * FROM story WHERE Level = @level ORDER BY RAND() LIMIT 1;";
+
+            await using var connection = new MySqlConnection(_connectionString);
+
+            return await connection.QueryFirstOrDefaultAsync<Story>(new CommandDefinition(sql, new { Level = level }));
+        }
     }
 }

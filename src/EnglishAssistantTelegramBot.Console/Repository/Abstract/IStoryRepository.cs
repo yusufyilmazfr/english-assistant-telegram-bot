@@ -14,5 +14,11 @@ namespace EnglishAssistantTelegramBot.Console.Repository.Abstract
         /// </summary>
         /// <returns></returns>
         Task<Story> GetAnyStoryAsync();
+        /// <summary>
+        /// It returns any story
+        /// </summary>
+        /// <param name="level">Story level</param>
+        /// <returns></returns>
+        Task<Story> GetAnyStoryAsync(int level);
     }
 }
