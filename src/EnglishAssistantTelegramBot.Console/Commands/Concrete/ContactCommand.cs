@@ -6,6 +6,7 @@ using EnglishAssistantTelegramBot.Console.Client;
 using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 {
@@ -20,6 +21,8 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         public async Task ExecuteAsync(Message message)
         {
+            await _telegramBotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
             string messageContent = $"🇬🇧: Hi {message.From.FirstName ?? message.From.Username} 👋\n" +
                                     $"I am Yusuf. I created this bot to make your work easier while you are studying English. I am here if you want to request a new feature, support or say hi. @yusufyilmazfr 🤗🌺\n\n" +
 

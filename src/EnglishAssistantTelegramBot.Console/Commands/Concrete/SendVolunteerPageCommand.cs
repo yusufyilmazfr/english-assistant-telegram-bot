@@ -26,6 +26,8 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         public async Task ExecuteAsync(Message message)
         {
+            await _telegramBotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
             var volunteer = await _volunteerPageRepository.GetAnyVolunteerPageAsync();
 
             await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, $"I will recommend a new beautiful account to you. 🎉");

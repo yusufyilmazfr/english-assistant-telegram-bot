@@ -26,6 +26,8 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         public async Task ExecuteAsync(Message message)
         {
+            await _telegramBotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
             var randomNumber = new Random().Next(0, 5);
 
             var words = await _wordRepository.GetAnyWordsAsync(count: 5);

@@ -8,6 +8,7 @@ using EnglishAssistantTelegramBot.Console.Commands.Abstract;
 using EnglishAssistantTelegramBot.Console.Services.Translation;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 {
@@ -24,6 +25,8 @@ namespace EnglishAssistantTelegramBot.Console.Commands.Concrete
 
         public async Task ExecuteAsync(Message message)
         {
+            await _telegramBotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+
             var text = message.Text.Replace("/translate ", "");
             var result = await _translateService.Translate(new Translation("en", "tr", text));
 
