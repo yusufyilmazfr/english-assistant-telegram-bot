@@ -1,7 +1,5 @@
 # Welcome to My English Assitant Bot👋
-<p align="center">
 <img title="" src="./screenshots/illustrator-logo.png" alt="illustrator-logo.png" data-align="center" width="491">
-</p>
 This bot provides to you learn english vocabularies, quotes or reading short story and listening pronunciation with Telegram channel.
 
 ---
